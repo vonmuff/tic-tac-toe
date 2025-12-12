@@ -24,3 +24,8 @@ void Game::render() const {
         std::cout << str;
     }
 }
+
+void Game::step() {
+    std::cout << "Enter position on map: ";
+    render();
+}

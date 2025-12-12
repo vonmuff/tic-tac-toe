@@ -13,6 +13,7 @@ class Game {
     public:
         void welcome();
         void render() const;
+        void step();
     private:
     std::vector<std::string> crossPattern{
             {"   ***   "},
