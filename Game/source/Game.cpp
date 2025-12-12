@@ -78,4 +78,5 @@ void Game::step() {
     }
     render(positionMap.first, positionMap.second);
     render();
+    ++winStepIter;
 }
