@@ -18,3 +18,9 @@ void Game::welcome() {
     if (std::cin >> presskey)
         system("cls");
 }
+
+void Game::render() const {
+    for (auto &str : map) {
+        std::cout << str;
+    }
+}
