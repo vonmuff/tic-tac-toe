@@ -11,6 +11,7 @@
 
 class Game {
     public:
+        void welcome() const;
     private:
     std::vector<std::string> crossPattern{
             {"   ***   "},
