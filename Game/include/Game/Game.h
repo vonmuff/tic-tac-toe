@@ -15,6 +15,7 @@ class Game {
         void render() const;
         void step();
     private:
+    int patternVariant{0}; // 0 = zeroPatter 1 = crossPattern
     std::pair<int,int> positionMap;
     std::vector<std::string> crossPattern{
             {"   ***   "},
