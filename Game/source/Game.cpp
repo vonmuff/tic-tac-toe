@@ -57,5 +57,24 @@ void Game::render(int row, int colm) {
 
 void Game::step() {
     std::cout << "Enter position on map: ";
+    std::cin >> positionMap.first >> positionMap.second;
+    while (true) {
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Enter a number between (0-2): ";
+            std::cin >> positionMap.first >> positionMap.second;
+        }
+        else if (implementationMap[positionMap.first][positionMap.second] == 0) {
+            implementationMap[positionMap.first][positionMap.second] = 1;
+            break;
+        }
+        else {
+            std::cout << "This field is already taken.\n Please select another one: ";
+            std::cin >> positionMap.first >> positionMap.second;
+        }
+
+    }
+    render(positionMap.first, positionMap.second);
     render();
 }
