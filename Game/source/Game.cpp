@@ -3,7 +3,8 @@
 //
 
 #include "Game/Game.h"
-
+#include <algorithm>
+#include <ranges>
 void Game::welcome() {
     std::cout << "      ________   _     _____     ________     ____    _    __      _     _        ____        ______\n";
     std::cout << "     /_______/  |_|   |  __/    /_______/    / /| |  | |  / /     | |   | |    __/    \\__    |  ___/\n";
@@ -32,23 +33,25 @@ void Game::render(int row, int colm) {
     size_t iterRow{0}, iterColm{0};
 
     switch (patternVariant) {
-        case 0: {
+        case 1: {
             for (size_t mapRow = 1+(5*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
                 for (size_t mapColm = 1+(9*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
                     map[mapRow][mapColm] = zeroPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
+            implementationMap[positionMap.first][positionMap.second] = patternVariant;
             ++patternVariant;
             break;
         }
-        case 1: {
+        case 2: {
             for (size_t mapRow = 1+(5*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
                 for (size_t mapColm = 1+(9*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
                     map[mapRow][mapColm] = crossPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
+            implementationMap[positionMap.first][positionMap.second] = patternVariant;
             --patternVariant;
             break;
         }
@@ -66,14 +69,12 @@ void Game::step() {
             std::cin >> positionMap.first >> positionMap.second;
         }
         else if (implementationMap[positionMap.first][positionMap.second] == 0) {
-            implementationMap[positionMap.first][positionMap.second] = 1;
             break;
         }
         else {
             std::cout << "This field is already taken.\n Please select another one: ";
             std::cin >> positionMap.first >> positionMap.second;
         }
-
     }
     render(positionMap.first, positionMap.second);
     render();
