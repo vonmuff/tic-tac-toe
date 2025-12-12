@@ -8,13 +8,14 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include <utility>
 class Game {
     public:
         void welcome();
         void render() const;
         void step();
     private:
+    std::pair<int,int> positionMap;
     std::vector<std::string> crossPattern{
             {"   ***   "},
             {"  *   *  "},
