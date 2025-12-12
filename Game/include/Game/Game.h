@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <array>
 class Game {
     public:
         void welcome();
@@ -17,6 +18,7 @@ class Game {
     private:
     int patternVariant{0}; // 0 = zeroPatter 1 = crossPattern
     std::pair<int,int> positionMap;
+    std::array<std::array<int, 3>,3> implementationMap{};
     std::vector<std::string> crossPattern{
             {"   ***   "},
             {"  *   *  "},
