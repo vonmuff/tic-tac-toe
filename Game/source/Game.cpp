@@ -84,31 +84,30 @@ void Game::win() {
     std::array<int,3> temp{0};
     if (winStepIter >= 5 || winStepIter <= 9) {
         for (size_t row{0}; row != 3; ++row) {
-            if (std::ranges::all_of(implementationMap[row], [](int i){return i == 1;})) {
-            }
-            if (std::ranges::all_of(implementationMap[row], [](int i){return i == 2;})) {
-            }
+            if (is_win(implementationMap[row])){ return; }
         }
         for (size_t colm{0}; colm != 3; ++colm) {
             for (size_t row{0}; row != 3; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
-            if (std::ranges::all_of(temp, [](int i){return i == 1;})){}
-            if (std::ranges::all_of(temp, [](int i){return i == 2;})){}
+            if (is_win(temp)){ return; }
         }
         for (size_t row{0},colm{0}; row !=3; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (std::ranges::all_of(temp, [](int i){return i == 1;})){}
-        if (std::ranges::all_of(temp, [](int i){return i == 2;})){}
+        if (is_win(temp)){ return; }
         for (size_t row{0},colm{2}; row !=3; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (std::ranges::all_of(temp, [](int i){return i == 1;})){}
-        if (std::ranges::all_of(temp, [](int i){return i == 2;})){}
+       if (is_win(temp)){ return; }
     }
+    std::cout << "It was a draw...\n";
 }
 
 bool Game::is_win(std::span<int> temp) {
-    return std::ranges::all_of(temp, [this](int i){return i == patternVariant;});
+    if (std::ranges::all_of(temp, [this](int i){return i == patternVariant;})) {
+        patternVariant == 1 ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
+        return true;
+    }
+    return false;
 }
