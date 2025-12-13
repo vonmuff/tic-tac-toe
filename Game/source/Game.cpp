@@ -108,3 +108,7 @@ void Game::win() {
         if (std::ranges::all_of(temp, [](int i){return i == 2;})){}
     }
 }
+
+bool Game::is_win(std::span<int> temp) {
+    return std::ranges::all_of(temp, [this](int i){return i == patternVariant;});
+}

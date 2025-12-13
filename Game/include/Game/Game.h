@@ -10,7 +10,7 @@
 #include <string>
 #include <utility>
 #include <array>
-
+#include <span>
 class Game {
 public:
     void welcome();
@@ -22,6 +22,8 @@ public:
     void step();
 
     void win();
+
+    bool is_win(std::span<int>);
 private:
     int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
     int winStepIter{0};
