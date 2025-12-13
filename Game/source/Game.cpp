@@ -80,28 +80,31 @@ void Game::step() {
     render();
     ++winStepIter;
 }
-void Game::win() {
-    std::array<int,3> temp{0};
+std::optional<bool> Game::win() { // to-do win renamed -> game_over
     if (winStepIter >= 5 || winStepIter <= 9) {
+        std::array<int,3> temp{0};
         for (size_t row{0}; row != 3; ++row) {
-            if (is_win(implementationMap[row])){ return; }
+            if (is_win(implementationMap[row])){ return true; }
         }
         for (size_t colm{0}; colm != 3; ++colm) {
             for (size_t row{0}; row != 3; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
-            if (is_win(temp)){ return; }
+            if (is_win(temp)){ return true; }
         }
         for (size_t row{0},colm{0}; row !=3; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (is_win(temp)){ return; }
+        if (is_win(temp)){ return true; }
         for (size_t row{0},colm{2}; row !=3; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
-       if (is_win(temp)){ return; }
+        if (is_win(temp)){ return true; }
     }
-    std::cout << "It was a draw...\n";
+    if (winStepIter == 9) {
+        std::cout << "It was a draw...\n";
+        return false;
+    }
 }
 
 bool Game::is_win(std::span<int> temp) {

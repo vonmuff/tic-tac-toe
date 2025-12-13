@@ -11,6 +11,7 @@
 #include <utility>
 #include <array>
 #include <span>
+#include <optional>
 class Game {
 public:
     void welcome();
@@ -21,7 +22,7 @@ public:
 
     void step();
 
-    void win();
+    std::optional<bool> win();
 
     bool is_win(std::span<int>);
 private:
