@@ -28,7 +28,7 @@ public:
 
     bool is_runnig() const;
 private:
-    bool isRunnig;
+    bool isRunnig{true};
     int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
     int winStepIter{1};
     std::pair<int, int> positionMap;
