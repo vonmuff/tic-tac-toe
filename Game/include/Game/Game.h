@@ -26,7 +26,7 @@ public:
     bool is_win(std::span<int>);
 private:
     int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
-    int winStepIter{0};
+    int winStepIter{1};
     std::pair<int, int> positionMap;
     std::array<std::array<int, 3>, 3> implementationMap{};
     std::vector<std::string> crossPattern{
