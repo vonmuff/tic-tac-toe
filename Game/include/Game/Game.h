@@ -25,7 +25,10 @@ public:
     std::optional<bool> win();
 
     bool is_win(std::span<int>);
+
+    bool is_runnig() const;
 private:
+    bool isRunnig;
     int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
     int winStepIter{1};
     std::pair<int, int> positionMap;

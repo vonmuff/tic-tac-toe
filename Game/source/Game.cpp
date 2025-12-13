@@ -79,6 +79,9 @@ void Game::step() {
     render(positionMap.first, positionMap.second);
     render();
     ++winStepIter;
+    if (win().has_value()) {
+
+    }
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
     if (winStepIter >= 5 || winStepIter <= 9) {
@@ -113,4 +116,8 @@ bool Game::is_win(std::span<int> temp) {
         return true;
     }
     return false;
+}
+
+bool Game::is_runnig() const {
+    return isRunnig;
 }
