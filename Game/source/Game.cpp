@@ -80,7 +80,7 @@ void Game::step() {
     render();
     ++winStepIter;
     if (win().has_value()) {
-
+        isRunnig = false;
     }
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
@@ -108,6 +108,7 @@ std::optional<bool> Game::win() { // to-do win renamed -> game_over
         std::cout << "It was a draw...\n";
         return false;
     }
+    return std::nullopt;
 }
 
 bool Game::is_win(std::span<int> temp) {
