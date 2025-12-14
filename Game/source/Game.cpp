@@ -21,6 +21,7 @@ void Game::welcome() {
 }
 
 void Game::render() const {
+    system("cls");
     for (auto &str : map) {
         std::cout << str;
     }
