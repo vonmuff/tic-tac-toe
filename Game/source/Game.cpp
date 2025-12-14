@@ -60,6 +60,11 @@ void Game::render(int row, int colm) {
 }
 
 void Game::step() {
+    render();
+    if (win().has_value()) {
+        isRunnig = false;
+        return;
+    }
     std::cout << "Enter position on map: ";
     std::cin >> positionMap.first >> positionMap.second;
     while (true) {
@@ -78,11 +83,7 @@ void Game::step() {
         }
     }
     render(positionMap.first, positionMap.second);
-    render();
     ++winStepIter;
-    if (win().has_value()) {
-        isRunnig = false;
-    }
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
     if (winStepIter >= 5 || winStepIter <= 9) {
