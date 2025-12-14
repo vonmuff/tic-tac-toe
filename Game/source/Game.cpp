@@ -106,7 +106,7 @@ std::optional<bool> Game::win() { // to-do win renamed -> game_over
         }
         if (is_win(temp)){ return true; }
     }
-    if (winStepIter == 9) {
+    if (winStepIter == 10) {
         std::cout << "It was a draw...\n";
         return false;
     }
