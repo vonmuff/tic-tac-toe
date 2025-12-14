@@ -62,7 +62,7 @@ void Game::render(int row, int colm) {
 void Game::step() {
     render();
     if (win().has_value()) {
-        isRunnig = false;
+        isRunning = false;
         return;
     }
     std::cout << "Enter position on map: ";
@@ -123,6 +123,6 @@ bool Game::is_win(std::span<int> temp) {
     return false;
 }
 
-bool Game::is_runnig() const {
-    return isRunnig;
+bool Game::is_running() const {
+    return isRunning;
 }
