@@ -38,6 +38,8 @@ private:
         inline static constexpr int CROSS_PATTERN{1};
         inline static constexpr int ZERO_PATTERN{2};
         inline static constexpr int MAP_SIZE{3};
+        inline static constexpr int MIN_WIN_STEP{5};
+        inline static constexpr int MAX_WIN_STEP{9};
     };
 
     bool isRunning{true};
