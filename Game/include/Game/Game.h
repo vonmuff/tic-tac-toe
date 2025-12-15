@@ -28,6 +28,13 @@ public:
 
     bool is_running() const;
 private:
+    struct Const {
+        inline static constexpr int ROWS_PATTERN{5};
+        inline static constexpr int COLMS_PATTERN{9};
+        inline static constexpr int CROSS_PATTERN{1};
+        inline static constexpr int ZERO_PATTERN{2};
+        inline static constexpr int MAP_SIZE{3};
+    };
     bool isRunning{true};
     int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
     int winStepIter{1};
