@@ -94,7 +94,7 @@ void Game::step() {
     ++stepCount;
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
-    if (stepCount >= 5 || stepCount <= 9) {
+    if (stepCount >= Const::MIN_WIN_STEP && stepCount < Const::MAX_WIN_STEP) {
         std::array<int,3> temp{0};
         for (size_t row{0}; row != 3; ++row) {
             if (is_win(implementationMap[row])){ return true; }
@@ -114,7 +114,7 @@ std::optional<bool> Game::win() { // to-do win renamed -> game_over
         }
         if (is_win(temp)){ return true; }
     }
-    if (stepCount == 10) {
+    if (stepCount > Const::MAX_WIN_STEP) {
         std::cout << "It was a draw...\n";
         return false;
     }
