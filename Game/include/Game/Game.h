@@ -19,6 +19,8 @@ public:
 
     void render() const;
 
+    void enter();
+
     void render(int, int);
 
     void step();
