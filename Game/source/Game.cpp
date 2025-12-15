@@ -41,7 +41,7 @@ void Game::render(int row, int colm) {
                 }
                 iterColm = 0;
             }
-            implementationMap[positionMap.first][positionMap.second] = patternVariant;
+            implementationMap[positionMap.first][positionMap.second] = Const::CROSS_PATTERN;
             patternVariant = Const::ZERO_PATTERN;
             break;
         }
@@ -52,7 +52,7 @@ void Game::render(int row, int colm) {
                 }
                 iterColm = 0;
             }
-            implementationMap[positionMap.first][positionMap.second] = patternVariant;
+            implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
             patternVariant = Const::CROSS_PATTERN;
             break;
         }
