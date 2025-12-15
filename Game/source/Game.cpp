@@ -27,6 +27,26 @@ void Game::render() const {
     }
 }
 
+void Game::enter() {
+    std::cout << "Enter position on map: ";
+    std::cin >> positionMap.first >> positionMap.second;
+    while (true) {
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Enter a number between (0-2): ";
+            std::cin >> positionMap.first >> positionMap.second;
+        }
+        else if (implementationMap[positionMap.first][positionMap.second] == 0) {
+            break;
+        }
+        else {
+            std::cout << "This field is already taken.\n Please select another one: ";
+            std::cin >> positionMap.first >> positionMap.second;
+        }
+    }
+}
+
 void Game::render(int row, int colm) {
     size_t patternRow = Const::ROWS_PATTERN + (Const::ROWS_PATTERN*row) + row;
     size_t patternColm = Const::COLMS_PATTERN + (Const::COLMS_PATTERN*colm) + colm;
@@ -65,23 +85,7 @@ void Game::step() {
         isRunning = false;
         return;
     }
-    std::cout << "Enter position on map: ";
-    std::cin >> positionMap.first >> positionMap.second;
-    while (true) {
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(32767, '\n');
-            std::cout << "Enter a number between (0-2): ";
-            std::cin >> positionMap.first >> positionMap.second;
-        }
-        else if (implementationMap[positionMap.first][positionMap.second] == 0) {
-            break;
-        }
-        else {
-            std::cout << "This field is already taken.\n Please select another one: ";
-            std::cin >> positionMap.first >> positionMap.second;
-        }
-    }
+    enter();
     render(positionMap.first, positionMap.second);
     ++stepCount;
 }
