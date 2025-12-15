@@ -95,21 +95,21 @@ void Game::step() {
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
     if (stepCount >= Const::MIN_WIN_STEP && stepCount < Const::MAX_WIN_STEP) {
-        std::array<int,3> temp{0};
-        for (size_t row{0}; row != 3; ++row) {
+        std::array<int, Const::MAP_SIZE> temp{0};
+        for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
             if (is_win(implementationMap[row])){ return true; }
         }
-        for (size_t colm{0}; colm != 3; ++colm) {
-            for (size_t row{0}; row != 3; ++row) {
+        for (size_t colm{0}; colm != Const::MAP_SIZE; ++colm) {
+            for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
             if (is_win(temp)){ return true; }
         }
-        for (size_t row{0},colm{0}; row !=3; ++row, ++colm) {
+        for (size_t row{0},colm{0}; row != Const::MAP_SIZE; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
         if (is_win(temp)){ return true; }
-        for (size_t row{0},colm{2}; row !=3; ++row, --colm) {
+        for (size_t row{0},colm{2}; row != Const::MAP_SIZE; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
         if (is_win(temp)){ return true; }
