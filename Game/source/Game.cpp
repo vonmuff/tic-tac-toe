@@ -28,16 +28,16 @@ void Game::render() const {
 }
 
 void Game::render(int row, int colm) {
-    size_t patternRow = Const::ROWS_PATTERN + (5*row) + row;
-    size_t patternColm = Const::COLMS_PATTERN + (9*colm) + colm;
+    size_t patternRow = Const::ROWS_PATTERN + (Const::ROWS_PATTERN*row) + row;
+    size_t patternColm = Const::COLMS_PATTERN + (Const::COLMS_PATTERN*colm) + colm;
 
     size_t iterRow{0}, iterColm{0};
 
     switch (patternVariant) {
-        case Const::ZERO_PATTERN: {
+        case Const::CROSS_PATTERN: {
             for (size_t mapRow = 1+(Const::ROWS_PATTERN*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
                 for (size_t mapColm = 1+(Const::COLMS_PATTERN*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
-                    map[mapRow][mapColm] = zeroPattern[iterRow][iterColm];
+                    map[mapRow][mapColm] = crossPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
@@ -45,10 +45,10 @@ void Game::render(int row, int colm) {
             patternVariant = Const::ZERO_PATTERN;
             break;
         }
-        case Const::CROSS_PATTERN: {
+        case Const::ZERO_PATTERN: {
             for (size_t mapRow = 1+(Const::ROWS_PATTERN*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
                 for (size_t mapColm = 1+(Const::COLMS_PATTERN*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
-                    map[mapRow][mapColm] = crossPattern[iterRow][iterColm];
+                    map[mapRow][mapColm] = zeroPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
