@@ -12,6 +12,7 @@
 #include <array>
 #include <span>
 #include <optional>
+
 class Game {
 public:
     void welcome();
@@ -27,6 +28,7 @@ public:
     bool is_win(std::span<int>);
 
     bool is_running() const;
+
 private:
     struct Const {
         inline static constexpr int ROWS_PATTERN{5};
@@ -35,25 +37,27 @@ private:
         inline static constexpr int ZERO_PATTERN{2};
         inline static constexpr int MAP_SIZE{3};
     };
+
     bool isRunning{true};
-    int patternVariant{1}; // 1 = zeroPatter 2 = crossPattern
+    int patternVariant{1};
     int winStepIter{1};
     std::pair<int, int> positionMap;
     std::array<std::array<int, 3>, 3> implementationMap{};
-    std::vector<std::string> crossPattern{
-        {"   ***   "},
-        {"  *   *  "},
-        {" *     * "},
-        {"  *   *  "},
-        {"   ***   "}
-    };
 
-    std::vector<std::string> zeroPattern{
+    std::vector<std::string> crossPattern{
         {"  *   *  "},
         {"   * *   "},
         {"    *    "},
         {"   * *   "},
         {"  *   *  "}
+    };
+
+    std::vector<std::string> zeroPattern{
+        {"   ***   "},
+        {"  *   *  "},
+        {" *     * "},
+        {"  *   *  "},
+        {"   ***   "}
     };
 
     std::vector<std::string> map{
