@@ -83,10 +83,10 @@ void Game::step() {
         }
     }
     render(positionMap.first, positionMap.second);
-    ++winStepIter;
+    ++stepCount;
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over
-    if (winStepIter >= 5 || winStepIter <= 9) {
+    if (stepCount >= 5 || stepCount <= 9) {
         std::array<int,3> temp{0};
         for (size_t row{0}; row != 3; ++row) {
             if (is_win(implementationMap[row])){ return true; }
@@ -106,7 +106,7 @@ std::optional<bool> Game::win() { // to-do win renamed -> game_over
         }
         if (is_win(temp)){ return true; }
     }
-    if (winStepIter == 10) {
+    if (stepCount == 10) {
         std::cout << "It was a draw...\n";
         return false;
     }

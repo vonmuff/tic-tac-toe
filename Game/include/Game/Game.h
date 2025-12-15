@@ -40,7 +40,7 @@ private:
 
     bool isRunning{true};
     int patternVariant{1};
-    int winStepIter{1};
+    int stepCount{1};
     std::pair<int, int> positionMap;
     std::array<std::array<int, 3>, 3> implementationMap{};
 
