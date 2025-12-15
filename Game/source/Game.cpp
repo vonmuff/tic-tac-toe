@@ -51,7 +51,7 @@ void Game::enter() {
     }
 }
 
-void Game::render(int row, int colm) {
+void Game::place_pattern(int row, int colm) {
     size_t patternRow = Const::ROWS_PATTERN + (Const::ROWS_PATTERN*row) + row;
     size_t patternColm = Const::COLMS_PATTERN + (Const::COLMS_PATTERN*colm) + colm;
 
@@ -90,7 +90,7 @@ void Game::step() {
         return;
     }
     enter();
-    render(positionMap.first, positionMap.second);
+    place_pattern(positionMap.first, positionMap.second);
     ++stepCount;
 }
 std::optional<bool> Game::win() { // to-do win renamed -> game_over

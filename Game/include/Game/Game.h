@@ -21,7 +21,7 @@ public:
 
     void enter();
 
-    void render(int, int);
+    void place_pattern(int, int);
 
     void step();
 
