@@ -28,32 +28,32 @@ void Game::render() const {
 }
 
 void Game::render(int row, int colm) {
-    size_t patternRow = 5 + (5*row) + row;
-    size_t patternColm = 9 + (9*colm) + colm;
+    size_t patternRow = Const::ROWS_PATTERN + (5*row) + row;
+    size_t patternColm = Const::COLMS_PATTERN + (9*colm) + colm;
 
     size_t iterRow{0}, iterColm{0};
 
     switch (patternVariant) {
-        case 1: {
-            for (size_t mapRow = 1+(5*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
-                for (size_t mapColm = 1+(9*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
+        case Const::ZERO_PATTERN: {
+            for (size_t mapRow = 1+(Const::ROWS_PATTERN*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
+                for (size_t mapColm = 1+(Const::COLMS_PATTERN*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
                     map[mapRow][mapColm] = zeroPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
             implementationMap[positionMap.first][positionMap.second] = patternVariant;
-            ++patternVariant;
+            patternVariant = Const::ZERO_PATTERN;
             break;
         }
-        case 2: {
-            for (size_t mapRow = 1+(5*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
-                for (size_t mapColm = 1+(9*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
+        case Const::CROSS_PATTERN: {
+            for (size_t mapRow = 1+(Const::ROWS_PATTERN*row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
+                for (size_t mapColm = 1+(Const::COLMS_PATTERN*colm)+colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
                     map[mapRow][mapColm] = crossPattern[iterRow][iterColm];
                 }
                 iterColm = 0;
             }
             implementationMap[positionMap.first][positionMap.second] = patternVariant;
-            --patternVariant;
+            patternVariant = Const::CROSS_PATTERN;
             break;
         }
     }
