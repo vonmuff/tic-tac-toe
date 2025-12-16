@@ -22,6 +22,21 @@ void Game::welcome() const {
         system("cls");
 }
 
+void Game::choose() {
+    std::cout << "Choose the pattern that will start first \n\n";
+    std::cout << "1 - cross     2 - zero\n\n";
+    for (size_t row{0}; row != Const::ROWS_PATTERN; ++row) {
+        for (size_t colm{0}; colm != Const::COLMS_PATTERN; ++colm) {
+            std::cout << crossPattern[row][colm];
+        }
+        std::cout << "    ";
+        for (size_t colm{0}; colm != Const::COLMS_PATTERN; ++colm) {
+            std::cout << zeroPattern[row][colm];
+        }
+        std::cout << "\n";
+    }
+}
+
 void Game::render() const {
     system("cls");
     for (auto &str: map) {
