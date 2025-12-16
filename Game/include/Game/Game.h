@@ -15,23 +15,23 @@
 
 class Game {
 public:
-    void welcome();
+    void welcome() const;
 
     void render() const;
 
+    void step();
+
+    bool is_running() const;
+
+private:
     void enter();
 
     void place_pattern(int, int);
-
-    void step();
 
     std::optional<bool> win();
 
     bool is_win(std::span<int>);
 
-    bool is_running() const;
-
-private:
     struct Const {
         inline static constexpr int ROWS_PATTERN{5};
         inline static constexpr int COLMS_PATTERN{9};
