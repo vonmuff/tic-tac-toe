@@ -17,6 +17,8 @@ class Game {
 public:
     void welcome() const;
 
+    void choose();
+
     void render() const;
 
     void step();
