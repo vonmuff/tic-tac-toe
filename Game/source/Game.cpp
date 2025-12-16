@@ -31,21 +31,21 @@ void Game::render() const {
 
 void Game::enter() {
     std::cout << "Enter position on map: ";
-    std::cin >> positionMap.first >> positionMap.second;
     while (true) {
+        std::cin >> positionMap.first >> positionMap.second;
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(32767, '\n');
             std::cout << "Enter a number between (0-2): ";
-            std::cin >> positionMap.first >> positionMap.second;
+            continue;
         } else if ((positionMap.first < 0 || positionMap.first > 2) && (positionMap.second < 0 || positionMap.second > 2)) {
             std::cout << "Enter a number between (0-2): ";
-            std::cin >> positionMap.first >> positionMap.second;
+            continue;
         } else if (implementationMap[positionMap.first][positionMap.second] == 0) {
             break;
         } else {
             std::cout << "This field is already taken.\n Please select another one: ";
-            std::cin >> positionMap.first >> positionMap.second;
+            continue;
         }
     }
 }
