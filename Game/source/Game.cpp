@@ -4,6 +4,7 @@
 
 #include "Game/Game.h"
 #include <algorithm>
+#include <memory>
 #include <ranges>
 
 void Game::welcome() const {
@@ -56,29 +57,24 @@ void Game::place_pattern(int row, int colm) {
 
     size_t iterRow{0}, iterColm{0};
 
-    switch (patternVariant) {
-        case Const::CROSS_PATTERN: {
-            for (size_t mapRow = 1 + (Const::ROWS_PATTERN * row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
-                for (size_t mapColm = 1 + (Const::COLMS_PATTERN * colm) + colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
-                    map[mapRow][mapColm] = crossPattern[iterRow][iterColm];
-                }
-                iterColm = 0;
-            }
-            implementationMap[positionMap.first][positionMap.second] = Const::CROSS_PATTERN;
-            patternVariant = Const::ZERO_PATTERN;
-            break;
+    const std::vector<std::string> *ptr = nullptr;
+
+    if (patternVariant == Const::CROSS_PATTERN)
+        ptr = &crossPattern;
+    if (patternVariant == Const::ZERO_PATTERN)
+        ptr = &zeroPattern;
+    for (size_t mapRow = 1 + (Const::ROWS_PATTERN * row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
+        for (size_t mapColm = 1 + (Const::COLMS_PATTERN * colm) + colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
+            map[mapRow][mapColm] = (*ptr)[iterRow][iterColm];
         }
-        case Const::ZERO_PATTERN: {
-            for (size_t mapRow = 1 + (Const::ROWS_PATTERN * row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
-                for (size_t mapColm = 1 + (Const::COLMS_PATTERN * colm) + colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
-                    map[mapRow][mapColm] = zeroPattern[iterRow][iterColm];
-                }
-                iterColm = 0;
-            }
-            implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
-            patternVariant = Const::CROSS_PATTERN;
-            break;
-        }
+        iterColm = 0;
+    }
+    implementationMap[positionMap.first][positionMap.second] = patternVariant;
+
+    if (patternVariant == Const::CROSS_PATTERN) {
+        patternVariant = Const::ZERO_PATTERN;
+    } else if (patternVariant == Const::ZERO_PATTERN) {
+        patternVariant = Const::CROSS_PATTERN;
     }
 }
 
