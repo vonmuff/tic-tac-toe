@@ -38,7 +38,7 @@ void Game::enter() {
             std::cin.ignore(32767, '\n');
             std::cout << "Enter a number between (0-2): ";
             continue;
-        } else if ((positionMap.first < 0 || positionMap.first > 2) && (positionMap.second < 0 || positionMap.second > 2)) {
+        } else if ((positionMap.first < 0 || positionMap.first > 2) || (positionMap.second < 0 || positionMap.second > 2)) {
             std::cout << "Enter a number between (0-2): ";
             continue;
         } else if (implementationMap[positionMap.first][positionMap.second] == 0) {
