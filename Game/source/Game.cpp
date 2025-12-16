@@ -114,7 +114,7 @@ std::optional<bool> Game::win() {
 bool Game::is_win(std::span<int> temp) {
     for (size_t patternVar{1}; patternVar <= 2; ++patternVar) {
         if (std::ranges::all_of(temp, [&patternVar](int i) { return i == patternVar; })) {
-            patternVariant == Const::CROSS_PATTERN ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
+            patternVar == Const::CROSS_PATTERN ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
             return true;
         }
     }
