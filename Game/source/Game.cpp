@@ -4,7 +4,6 @@
 
 #include "Game/Game.h"
 #include <algorithm>
-#include <memory>
 #include <ranges>
 
 void Game::welcome() const {
@@ -70,12 +69,6 @@ void Game::place_pattern(int row, int colm) {
         iterColm = 0;
     }
     implementationMap[positionMap.first][positionMap.second] = patternVariant;
-
-    if (patternVariant == Const::CROSS_PATTERN) {
-        patternVariant = Const::ZERO_PATTERN;
-    } else if (patternVariant == Const::ZERO_PATTERN) {
-        patternVariant = Const::CROSS_PATTERN;
-    }
 }
 
 void Game::step() {
@@ -86,6 +79,7 @@ void Game::step() {
     }
     enter();
     place_pattern(positionMap.first, positionMap.second);
+    patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
     ++stepCount;
 }
 
