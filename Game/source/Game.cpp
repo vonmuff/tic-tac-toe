@@ -35,6 +35,22 @@ void Game::choose() {
         }
         std::cout << "\n";
     }
+    int firstPattern;
+    std::cout << "\n: ";
+    while (true) {
+        std::cin >> firstPattern;
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Enter a number (1-2): ";
+            continue;
+        } else if (firstPattern < 1 || firstPattern > 2) {
+            std::cout << "Enter a number (1-2): ";
+            continue;
+        }
+        patternVariant = firstPattern;
+        break;
+    }
 }
 
 void Game::render() const {
