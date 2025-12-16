@@ -4,6 +4,7 @@
 int main() {
     Game game;
     game.welcome();
+    game.choose();
     while (game.is_running()) {
         game.step();
     }
