@@ -174,11 +174,16 @@ bool Game::is_running() const {
 
 bool Game::start_over() {
     std::cout << "Would you like to continue playing?\n";
-    std::cout << "Press y - continue  n - quit\n\n :";
+    std::cout << "Press y - continue  n - quit\n\n: ";
     char presskey;
     std::cin >> presskey;
     if (presskey == 'y') {
+        isRunning = true;
+        clear_map();
+        stepCount = 1;
+        return true;
     }
     if (presskey == 'n') {
+        return false;
     }
 }
