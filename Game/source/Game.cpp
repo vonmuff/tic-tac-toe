@@ -16,7 +16,7 @@ void Game::welcome() const {
      | |     | |  |  |__        | |   / /    | |  |  |__        | |     |  \___/  |  | \_____
      |_|     |_|   |____\       |_|  /_/     |_|   |____\       |_|      \_______/   |______/)";
 
-    std::cout << "\n\n Press any button to continue ...\n";
+    std::cout << "\n\n Press any button to continue\n\n: ";
     char presskey;
     if (std::cin >> presskey)
         system("cls");
@@ -75,7 +75,7 @@ void Game::enter() {
         } else if (implementationMap[positionMap.first][positionMap.second] == 0) {
             break;
         } else {
-            std::cout << "This field is already taken.\n Please select another one: ";
+            std::cout << "This field is already taken.\nPlease select another one: ";
             continue;
         }
     }
