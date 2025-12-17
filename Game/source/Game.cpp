@@ -152,6 +152,19 @@ bool Game::is_win(std::span<int> temp) {
     return false;
 }
 
+void Game::clear_map() {
+    char space = ' ';
+    for (size_t row{1}; row != 18; ++row) {
+        if (row % 6 == 0)
+            continue;
+        for (size_t colm{1}; colm != 31; ++colm) {
+            if (colm % 10 == 0)
+                continue;
+            map[row][colm] = space;
+        }
+    }
+}
+
 bool Game::is_running() const {
     return isRunning;
 }
