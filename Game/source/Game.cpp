@@ -155,3 +155,14 @@ bool Game::is_win(std::span<int> temp) {
 bool Game::is_running() const {
     return isRunning;
 }
+
+bool Game::start_over() {
+    std::cout << "Would you like to continue playing?\n";
+    std::cout << "Press y - continue  n - quit\n\n :";
+    char presskey;
+    std::cin >> presskey;
+    if (presskey == 'y') {
+    }
+    if (presskey == 'n') {
+    }
+}
