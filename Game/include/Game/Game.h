@@ -25,6 +25,8 @@ public:
 
     bool is_running() const;
 
+    bool start_over();
+
 private:
     void enter();
 
