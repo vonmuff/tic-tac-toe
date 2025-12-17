@@ -46,6 +46,10 @@ private:
         inline static constexpr int MAP_SIZE{3};
         inline static constexpr int MIN_WIN_STEP{5};
         inline static constexpr int MAX_WIN_STEP{9};
+        inline static constexpr int ROWS_MAP{18};
+        inline static constexpr int COLMS_MAP{31};
+        inline static constexpr int SEPARATOR_ROWS_MAP{6};
+        inline static constexpr int SEPARATOR_COLMS_MAP{10};
     };
 
     bool isRunning{true};
