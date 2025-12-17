@@ -36,6 +36,8 @@ private:
 
     bool is_win(std::span<int>);
 
+    void clear_map();
+
     struct Const {
         inline static constexpr int ROWS_PATTERN{5};
         inline static constexpr int COLMS_PATTERN{9};
