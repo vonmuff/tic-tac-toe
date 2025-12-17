@@ -163,6 +163,9 @@ void Game::clear_map() {
             map[row][colm] = space;
         }
     }
+    for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
+        std::ranges::fill(implementationMap[row], 0);
+    }
 }
 
 bool Game::is_running() const {
