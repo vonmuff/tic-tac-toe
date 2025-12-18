@@ -1,5 +1,5 @@
-## Сonsole game tic-tac-toe
-### :video_game: Game review
+# Console Tic-Tac-Toe
+### :video_game: Overview
 
 ![game](https://github.com/user-attachments/assets/a92cff77-5c55-419c-ba6e-b544fbe7c517)
 
@@ -8,7 +8,7 @@
 * The game graphics are drawn using ASCII
 * Using modern C++20 standards
 * Use of STL algorithms
-* Protection from incorrect data entry
+* Robust Input Validation
 * Functions include turn selection, win/draw detection, and replayability without restarting the application
 
 ### :computer: Technology stack 
@@ -33,7 +33,7 @@ tictactoe/
 ```
 
 ### :zap: How to run
-#### CMAke method
+#### Option 1: CMake
 
   1. Clone a remote repository:
 ```
@@ -60,7 +60,7 @@ cmake --build .
 ```
 ./app/tictactoe.exe
 ```
-#### Manual method
+#### Option 2: Manual Compilation (g++)
 
  1. Clone a remote repository:
 ```
@@ -78,6 +78,6 @@ g++ -std=c++20 app/main.cpp Game/source/Game.cpp -o tictactoe -IGame/include
 ./tictactoe.exe
 ```
 
-### :heavy_exclamation_mark: My opinion
+### :thought_balloon: Learning Outcomes
 
-I wrote this game to practice my skills of C++, Git, and CMake. This simple example made me realize how complex it is to write high-quality programs.
+I developed this project to practice skills in C++, Git, and CMake. Working on this example highlighted the importance of clean code structure and helped me understand the complexity behind writing high-quality software.
