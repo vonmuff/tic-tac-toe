@@ -121,7 +121,7 @@ void Game::step() {
 }
 
 std::optional<bool> Game::win() {
-    if (stepCount >= Const::MIN_WIN_STEP && stepCount < Const::MAX_WIN_STEP) {
+    if (stepCount >= Const::MIN_WIN_STEP || stepCount <= Const::MAX_WIN_STEP) {
         std::array<int, Const::MAP_SIZE> temp{0};
         for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
             if (is_win(implementationMap[row])) { return true; }
