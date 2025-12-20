@@ -61,18 +61,23 @@ void Game::render() const {
 }
 
 void Game::enter() {
+    int number;
     std::cout << "Enter position on map: ";
     while (true) {
-        std::cin >> positionMap.first >> positionMap.second;
+        std::cin >> number;
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(32767, '\n');
+            std::cout << "Enter a number between (1-9): ";
+            continue;
+        } else if (number < 1 || number > 9) {
             std::cout << "Enter a number between (0-2): ";
             continue;
-        } else if ((positionMap.first < 0 || positionMap.first > 2) || (positionMap.second < 0 || positionMap.second > 2)) {
-            std::cout << "Enter a number between (0-2): ";
-            continue;
-        } else if (implementationMap[positionMap.first][positionMap.second] == 0) {
+        }
+        --number;
+        positionMap.first = 2 - (number / 3);
+        positionMap.second = number % 3;
+        if (implementationMap[positionMap.first][positionMap.second] == 0) {
             break;
         } else {
             std::cout << "This field is already taken.\nPlease select another one: ";
