@@ -71,12 +71,13 @@ void Game::enter() {
             std::cout << "Enter a number between (1-9): ";
             continue;
         } else if (number < 1 || number > 9) {
-            std::cout << "Enter a number between (0-2): ";
+            std::cout << "Enter a number between (1-9): ";
             continue;
         }
         --number;
         positionMap.first = 2 - (number / 3);
         positionMap.second = number % 3;
+        std::cin.ignore(32767, '\n');
         if (implementationMap[positionMap.first][positionMap.second] == 0) {
             break;
         } else {
