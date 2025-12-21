@@ -55,8 +55,37 @@ void Game::choose() {
 
 void Game::render() const {
     system("cls");
-    for (auto &str: map) {
-        std::cout << str;
+    int iterRow{0}, iterColm{0};
+    for (size_t row{0}; row <= Const::ROWS_MAP; ++row) {
+        for (size_t colm{0}; colm != Const::COLMS_MAP; ++colm) {
+            if (row % Const::SEPARATOR_ROWS_MAP == 0) {
+                iterRow = 0;
+                if (colm % Const::SEPARATOR_COLMS_MAP == 0) {
+                    std::cout << " ";
+                    continue;
+                }
+                std::cout <<"-";
+                continue;
+            }
+            if (colm % Const::SEPARATOR_COLMS_MAP == 0) {
+                std::cout << "|";
+                iterColm = 0;
+                continue;
+            }
+            if (implementationMap[row / Const::SEPARATOR_ROWS_MAP][colm / Const::SEPARATOR_COLMS_MAP] != 0) {
+                if (implementationMap[row / Const::SEPARATOR_ROWS_MAP][colm / Const::SEPARATOR_COLMS_MAP] == Const::CROSS_PATTERN)
+                    std::cout << crossPattern[iterRow][iterColm];
+                if (implementationMap[row / Const::SEPARATOR_ROWS_MAP][colm / Const::SEPARATOR_COLMS_MAP] == Const::ZERO_PATTERN)
+                    std::cout << zeroPattern[iterRow][iterColm];
+            }
+            else
+                std::cout << " ";
+            ++iterColm;
+
+        }
+        std::cout << "  \n";
+        if (row % Const::SEPARATOR_ROWS_MAP != 0)
+            ++iterRow;
     }
 }
 
