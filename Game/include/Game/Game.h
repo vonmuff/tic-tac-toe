@@ -30,7 +30,7 @@ public:
 private:
     void enter();
 
-    std::optional<bool> win();
+    void win();
 
     bool is_win(std::span<int>);
 
@@ -51,6 +51,7 @@ private:
     };
 
     bool isRunning{true};
+    std::optional<bool> isWin;
     int patternVariant;
     int stepCount{1};
     std::pair<int, int> positionMap;
@@ -71,7 +72,7 @@ private:
         {"  *   *  "},
         {"   ***   "}
     };
-    
+
 };
 
 

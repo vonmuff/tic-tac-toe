@@ -128,32 +128,31 @@ void Game::step() {
     ++stepCount;
 }
 
-std::optional<bool> Game::win() {
+void Game::win() {
     if (stepCount >= Const::MIN_WIN_STEP || stepCount <= Const::MAX_WIN_STEP) {
         std::array<int, Const::MAP_SIZE> temp{0};
         for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
-            if (is_win(implementationMap[row])) { return true; }
+            if (is_win(implementationMap[row])) { isWin = true; return; }
         }
         for (size_t colm{0}; colm != Const::MAP_SIZE; ++colm) {
             for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
-            if (is_win(temp)) { return true; }
+            if (is_win(temp)) { isWin = true; return; }
         }
         for (size_t row{0}, colm{0}; row != Const::MAP_SIZE; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (is_win(temp)) { return true; }
+        if (is_win(temp)) { isWin = true; return; }
         for (size_t row{0}, colm{2}; row != Const::MAP_SIZE; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (is_win(temp)) { return true; }
+        if (is_win(temp)) { isWin = true; return; }
     }
     if (stepCount > Const::MAX_WIN_STEP) {
-        std::cout << "It was a draw...\n";
-        return false;
+        isWin= false;
     }
-    return std::nullopt;
+    isWin = std::nullopt;
 }
 
 bool Game::is_win(std::span<int> temp) {
