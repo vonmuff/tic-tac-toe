@@ -158,11 +158,24 @@ void Game::win() {
 bool Game::is_win(std::span<int> temp) {
     for (size_t patternVar{1}; patternVar <= 2; ++patternVar) {
         if (std::ranges::all_of(temp, [&patternVar](int i) { return i == patternVar; })) {
-            patternVar == Const::CROSS_PATTERN ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
             return true;
         }
     }
     return false;
+}
+
+void Game::if_win() {
+    if (isWin.has_value()) {
+        if (isWin.value() == true) {
+            render();
+            patternVariant == Const::CROSS_PATTERN ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
+        }
+        else if (isWin.value() == false) {
+            render();
+            std::cout << "It was a draw...\n";
+        }
+        isRunning = false;
+    }
 }
 
 void Game::clear_map() {

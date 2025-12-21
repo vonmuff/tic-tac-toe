@@ -34,6 +34,8 @@ private:
 
     bool is_win(std::span<int>);
 
+    void if_win();
+
     void clear_map();
 
     struct Const {
