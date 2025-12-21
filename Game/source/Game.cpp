@@ -167,16 +167,6 @@ bool Game::is_win(std::span<int> temp) {
 }
 
 void Game::clear_map() {
-    char space = ' ';
-    for (size_t row{0}; row != Const::ROWS_MAP; ++row) {
-        if (row % Const::SEPARATOR_ROWS_MAP == 0)
-            continue;
-        for (size_t colm{0}; colm != Const::COLMS_MAP; ++colm) {
-            if (colm % Const::SEPARATOR_COLMS_MAP == 0)
-                continue;
-            map[row][colm] = space;
-        }
-    }
     for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
         std::ranges::fill(implementationMap[row], 0);
     }
