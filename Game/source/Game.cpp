@@ -119,11 +119,9 @@ void Game::enter() {
 
 void Game::step() {
     render();
-    if (win().has_value()) {
-        isRunning = false;
-        return;
-    }
     enter();
+    win();
+    if_win();
     patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
     ++stepCount;
 }
