@@ -108,6 +108,7 @@ void Game::enter() {
         positionMap.second = number % 3;
         std::cin.ignore(32767, '\n');
         if (implementationMap[positionMap.first][positionMap.second] == 0) {
+            implementationMap[positionMap.first][positionMap.second] = patternVariant;
             break;
         } else {
             std::cout << "This field is already taken.\nPlease select another one: ";
