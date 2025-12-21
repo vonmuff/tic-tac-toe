@@ -30,8 +30,6 @@ public:
 private:
     void enter();
 
-    void place_pattern(int, int);
-
     std::optional<bool> win();
 
     bool is_win(std::span<int>);

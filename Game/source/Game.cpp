@@ -116,27 +116,6 @@ void Game::enter() {
     }
 }
 
-void Game::place_pattern(int row, int colm) {
-    size_t patternRow = Const::ROWS_PATTERN + (Const::ROWS_PATTERN * row) + row;
-    size_t patternColm = Const::COLMS_PATTERN + (Const::COLMS_PATTERN * colm) + colm;
-
-    size_t iterRow{0}, iterColm{0};
-
-    const std::vector<std::string> *ptr = nullptr;
-
-    if (patternVariant == Const::CROSS_PATTERN)
-        ptr = &crossPattern;
-    if (patternVariant == Const::ZERO_PATTERN)
-        ptr = &zeroPattern;
-    for (size_t mapRow = 1 + (Const::ROWS_PATTERN * row) + row; mapRow <= patternRow; ++mapRow, ++iterRow) {
-        for (size_t mapColm = 1 + (Const::COLMS_PATTERN * colm) + colm; mapColm <= patternColm; ++mapColm, ++iterColm) {
-            map[mapRow][mapColm] = (*ptr)[iterRow][iterColm];
-        }
-        iterColm = 0;
-    }
-    implementationMap[positionMap.first][positionMap.second] = patternVariant;
-}
-
 void Game::step() {
     render();
     if (win().has_value()) {
@@ -144,7 +123,6 @@ void Game::step() {
         return;
     }
     enter();
-    place_pattern(positionMap.first, positionMap.second);
     patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
     ++stepCount;
 }
