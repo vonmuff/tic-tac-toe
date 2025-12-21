@@ -22,6 +22,25 @@ void Game::welcome() const {
         system("cls");
 }
 
+void Game::game_mode() {
+    std::cout << "Select a game mode\n";
+    std::cout << "Play with a friend - 1 Play with the computer - 2\n\n:";
+    while (true) {
+         std::cin >> mode;
+        if (std::cin.fail()) {
+            std::cin.clear();
+            std::cin.ignore(32767, '\n');
+            std::cout << "Enter a number (1-2): ";
+            continue;
+        } else if (mode < 1 || mode > 2) {
+            std::cout << "Enter a number (1-2): ";
+            continue;
+        }
+        break;
+    }
+    system("cls");
+}
+
 void Game::choose() {
     std::cout << "Choose the pattern that will start first \n\n";
     std::cout << "1 - cross     2 - zero\n\n";

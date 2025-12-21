@@ -17,6 +17,8 @@ class Game {
 public:
     void welcome() const;
 
+    void game_mode();
+
     void choose();
 
     void render() const;
@@ -54,6 +56,7 @@ private:
 
     bool isRunning{true};
     std::optional<bool> isWin;
+    int mode{1};
     int patternVariant;
     int stepCount{1};
     std::pair<int, int> positionMap;
