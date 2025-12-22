@@ -5,7 +5,7 @@
 #include "Game/Game.h"
 #include <algorithm>
 #include <ranges>
-
+#include <random>
 void Game::welcome() const {
     std::cout << R"(
    ________   _     _____     ________     ____     _____     ________    _______     ______
@@ -142,6 +142,17 @@ void Game::enter() {
             continue;
         }
     }
+}
+
+
+void Game::random(std::span<int> temp) {
+    std::random_device Seeder;
+    std::mt19937 gen(Seeder());
+    std::uniform_int_distribution<int> dist(0, temp.size() - 1);
+    int randomPos = temp[dist(gen)];
+    positionMap.first = 2 - (randomPos / 3);
+    positionMap.second = randomPos % 3;
+
 }
 
 void Game::step() {
