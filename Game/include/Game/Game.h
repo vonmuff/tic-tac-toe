@@ -32,6 +32,12 @@ public:
 private:
     void enter();
 
+    void computer_logic();
+
+    std::optional<int> range_check(std::span<int> range, int pattern);
+
+    void random(std::span<int>);
+
     void win();
 
     bool is_win(std::span<int>);
