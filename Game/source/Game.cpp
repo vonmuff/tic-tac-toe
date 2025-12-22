@@ -303,6 +303,7 @@ void Game::clear_map() {
     for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
         std::ranges::fill(implementationMap[row], 0);
     }
+    stepCount = 0;
 }
 
 bool Game::is_running() const {
