@@ -24,7 +24,15 @@ void Game::welcome() const {
 
 void Game::game_mode() {
     std::cout << "Select a game mode\n";
-    std::cout << "Play with a friend - 1 Play with the computer - 2\n\n:";
+    std::cout << R"(
+Play with a friend - 1   Play with the computer - 2
+  _        _              _
+ |_|      |_|            |_|       _____
+  |        |              |       |     |
+ /|\  vs  /|\            /|\  vs  |_____|
+  |        |              |      ____|____
+ / \      / \            / \    |_________|)";
+    std::cout << "\n\n:";
     while (true) {
          std::cin >> mode;
         if (std::cin.fail()) {
