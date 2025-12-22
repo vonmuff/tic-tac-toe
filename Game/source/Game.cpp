@@ -232,10 +232,19 @@ void Game::random(std::span<int> temp) {
 void Game::step() {
     render();
     enter();
+    ++stepCount;
     win();
     if_win();
-    patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
-    ++stepCount;
+    if (is_running() == false) return;;
+    if (mode == 2) {
+        computer_logic();
+        ++stepCount;
+        win();
+        if_win();
+        if (is_running() == false) return;;
+    } else {
+        patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
+    }
 }
 
 void Game::win() {
