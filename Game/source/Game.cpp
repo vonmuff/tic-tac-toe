@@ -144,6 +144,70 @@ void Game::enter() {
     }
 }
 
+void Game::computer_logic() {
+    if (stepCount == 1) {
+        if (implementationMap[1][1] == 0) {
+            implementationMap[1][1] = Const::ZERO_PATTERN;
+        }else if (implementationMap[1][1] == Const::CROSS_PATTERN) {
+            std::vector<int> angles{6,8,0,2};
+            random(angles);
+            implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
+        }
+        return;
+    }
+
+    for (int pattern{2}; pattern > 0; --pattern) {
+
+        for (int row{0}; row != Const::MAP_SIZE; ++row) {
+            if (range_check(implementationMap[row], pattern).has_value()){
+                int index = range_check(implementationMap[row], pattern).value();
+                implementationMap[row][index] = Const::ZERO_PATTERN;
+                return;
+            }
+        }
+
+        for (int colm{0}; colm != Const::MAP_SIZE; ++colm) {
+            std::vector<int> temp(3);
+            for (int row{0}; row != Const::MAP_SIZE; ++row){
+                temp[row] = implementationMap[row][colm];
+            }
+            if (range_check(temp, pattern).has_value()) {
+                int index = range_check(temp, pattern).value();
+                implementationMap[index][colm] = Const::ZERO_PATTERN;
+                return;
+            }
+        }
+
+        std::vector<int> temp(3);
+        for (int row{0}, colm{0}; row != Const::MAP_SIZE; ++row, ++colm){
+            temp[row] = implementationMap[row][colm];
+        }
+        if (range_check(temp, pattern).has_value()){
+            int index = range_check(temp, pattern).value();
+            implementationMap[index][index] = Const::ZERO_PATTERN;
+            return;
+        }
+
+        for (int row{0}, colm{2}; row != Const::MAP_SIZE; ++row, --colm){
+            temp[row] = implementationMap[row][colm];
+        }
+        if (range_check(temp, pattern).has_value()){
+            int index = range_check(temp, pattern).value();
+            implementationMap[index][2 - index] = Const::ZERO_PATTERN;
+            return;
+        }
+    }
+
+    while (true) {
+        std::vector<int> num{1,2,3,4,5,6,7,8,9};
+        random(num);
+        if (implementationMap[positionMap.first][positionMap.second] == 0) {
+            implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
+            break;
+        }
+    }
+}
+
 std::optional<int> Game::range_check(std::span<int> range, int pattern) {
     if (std::ranges::count(range, pattern) == 2) {
         auto pos = std::ranges::find(range, 0);
