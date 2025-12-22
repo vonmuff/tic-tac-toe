@@ -144,6 +144,16 @@ void Game::enter() {
     }
 }
 
+std::optional<int> Game::range_check(std::span<int> range, int pattern) {
+    if (std::ranges::count(range, pattern) == 2) {
+        auto pos = std::ranges::find(range, 0);
+        if (pos != range.end()) {
+            size_t index = std::ranges::distance(range.begin(), pos);
+            return index;
+        }
+    }
+    return std::nullopt;
+}
 
 void Game::random(std::span<int> temp) {
     std::random_device Seeder;
