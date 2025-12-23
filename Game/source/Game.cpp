@@ -76,6 +76,13 @@ void Game::pattern_choose() {
     }
 }
 
+void Game::user_choise() {
+    game_mode();
+    if (mode  == 2)
+        return;
+    pattern_choose();
+}
+
 void Game::render() const {
     system("cls");
     int iterRow{0}, iterColm{0};

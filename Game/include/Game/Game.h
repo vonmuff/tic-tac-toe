@@ -17,7 +17,7 @@ class Game {
 public:
     void welcome() const;
 
-    void choose();
+    void user_choise();
 
     void render() const;
 

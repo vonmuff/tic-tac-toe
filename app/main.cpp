@@ -4,7 +4,7 @@
 int main() {
     Game game;
     game.welcome();
-    game.choose();
+    game.user_choise();
     bool flag{true};
     while (flag) {
         game.step();
