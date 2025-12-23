@@ -135,9 +135,13 @@ void Game::enter() {
         positionMap.second = number % 3;
         std::cin.ignore(32767, '\n');
         if (implementationMap[positionMap.first][positionMap.second] == 0) {
-            implementationMap[positionMap.first][positionMap.second] = patternVariant;
-            break;
-        } else {
+            if (mode == 1) {
+                implementationMap[positionMap.first][positionMap.second] = patternVariant;
+            }else if (mode == 2)
+                implementationMap[positionMap.first][positionMap.second] = Const::CROSS_PATTERN;
+            break;;
+        }
+        else {
             std::cout << "This field is already taken.\nPlease select another one: ";
             continue;
         }
@@ -237,14 +241,14 @@ void Game::step() {
     if_win();
     if (is_running() == false) return;;
     if (mode == 2) {
+        patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
         computer_logic();
         ++stepCount;
         win();
         if_win();
         if (is_running() == false) return;;
-    } else {
-        patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
     }
+    patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
 }
 
 void Game::win() {
