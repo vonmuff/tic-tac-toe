@@ -62,7 +62,6 @@ void Game::choose() {
         }
         std::cout << "\n";
     }
-    int firstPattern;
     std::cout << "\n: ";
     while (true) {
         std::cin >> firstPattern;
@@ -308,6 +307,7 @@ void Game::clear_map() {
         std::ranges::fill(implementationMap[row], 0);
     }
     stepCount = 0;
+    patternVariant = firstPattern;
 }
 
 bool Game::is_running() const {
@@ -327,7 +327,6 @@ bool Game::start_over() {
         if (presskey == 'y' || presskey == 'Y') {
             isRunning = true;
             clear_map();
-            stepCount = 1;
             return true;
         } else if (presskey == 'n' || presskey == 'N') {
             return false;
