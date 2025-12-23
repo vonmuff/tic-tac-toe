@@ -1,11 +1,8 @@
-//
-// Created by user on 11.12.2025.
-//
-
 #include "Game/Game.h"
 #include <algorithm>
 #include <ranges>
 #include <random>
+
 void Game::welcome() const {
     std::cout << R"(
    ________   _     _____     ________     ____     _____     ________    _______     ______
@@ -34,7 +31,7 @@ Play with a friend - 1   Play with the computer - 2
  / \      / \            / \    |_________|)";
     std::cout << "\n\n:";
     while (true) {
-         std::cin >> mode;
+        std::cin >> mode;
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(32767, '\n');
@@ -90,7 +87,7 @@ void Game::render() const {
                     std::cout << " ";
                     continue;
                 }
-                std::cout <<"-";
+                std::cout << "-";
                 continue;
             }
             if (colm % Const::SEPARATOR_COLMS_MAP == 0) {
@@ -103,11 +100,9 @@ void Game::render() const {
                     std::cout << crossPattern[iterRow][iterColm];
                 if (implementationMap[row / Const::SEPARATOR_ROWS_MAP][colm / Const::SEPARATOR_COLMS_MAP] == Const::ZERO_PATTERN)
                     std::cout << zeroPattern[iterRow][iterColm];
-            }
-            else
+            } else
                 std::cout << " ";
             ++iterColm;
-
         }
         std::cout << "  \n";
         if (row % Const::SEPARATOR_ROWS_MAP != 0)
@@ -136,11 +131,10 @@ void Game::enter() {
         if (implementationMap[positionMap.first][positionMap.second] == 0) {
             if (mode == 1) {
                 implementationMap[positionMap.first][positionMap.second] = patternVariant;
-            }else if (mode == 2)
+            } else if (mode == 2)
                 implementationMap[positionMap.first][positionMap.second] = Const::CROSS_PATTERN;
             break;;
-        }
-        else {
+        } else {
             std::cout << "This field is already taken.\nPlease select another one: ";
             continue;
         }
@@ -151,8 +145,8 @@ void Game::computer_logic() {
     if (stepCount == 1) {
         if (implementationMap[1][1] == 0) {
             implementationMap[1][1] = Const::ZERO_PATTERN;
-        }else if (implementationMap[1][1] == Const::CROSS_PATTERN) {
-            std::vector<int> angles{6,8,0,2};
+        } else if (implementationMap[1][1] == Const::CROSS_PATTERN) {
+            std::vector<int> angles{6, 8, 0, 2};
             random(angles);
             implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
         }
@@ -160,9 +154,8 @@ void Game::computer_logic() {
     }
 
     for (int pattern{2}; pattern > 0; --pattern) {
-
         for (int row{0}; row != Const::MAP_SIZE; ++row) {
-            if (range_check(implementationMap[row], pattern).has_value()){
+            if (range_check(implementationMap[row], pattern).has_value()) {
                 int index = range_check(implementationMap[row], pattern).value();
                 implementationMap[row][index] = Const::ZERO_PATTERN;
                 return;
@@ -171,7 +164,7 @@ void Game::computer_logic() {
 
         for (int colm{0}; colm != Const::MAP_SIZE; ++colm) {
             std::vector<int> temp(3);
-            for (int row{0}; row != Const::MAP_SIZE; ++row){
+            for (int row{0}; row != Const::MAP_SIZE; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
             if (range_check(temp, pattern).has_value()) {
@@ -182,19 +175,19 @@ void Game::computer_logic() {
         }
 
         std::vector<int> temp(3);
-        for (int row{0}, colm{0}; row != Const::MAP_SIZE; ++row, ++colm){
+        for (int row{0}, colm{0}; row != Const::MAP_SIZE; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (range_check(temp, pattern).has_value()){
+        if (range_check(temp, pattern).has_value()) {
             int index = range_check(temp, pattern).value();
             implementationMap[index][index] = Const::ZERO_PATTERN;
             return;
         }
 
-        for (int row{0}, colm{2}; row != Const::MAP_SIZE; ++row, --colm){
+        for (int row{0}, colm{2}; row != Const::MAP_SIZE; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (range_check(temp, pattern).has_value()){
+        if (range_check(temp, pattern).has_value()) {
             int index = range_check(temp, pattern).value();
             implementationMap[index][2 - index] = Const::ZERO_PATTERN;
             return;
@@ -202,7 +195,7 @@ void Game::computer_logic() {
     }
 
     while (true) {
-        std::vector<int> num{1,2,3,4,5,6,7,8,9};
+        std::vector<int> num{0, 1, 2, 3, 4, 5, 6, 7, 8};
         random(num);
         if (implementationMap[positionMap.first][positionMap.second] == 0) {
             implementationMap[positionMap.first][positionMap.second] = Const::ZERO_PATTERN;
@@ -229,7 +222,6 @@ void Game::random(std::span<int> temp) {
     int randomPos = temp[dist(gen)];
     positionMap.first = 2 - (randomPos / 3);
     positionMap.second = randomPos % 3;
-
 }
 
 void Game::step() {
@@ -254,29 +246,40 @@ void Game::win() {
     if (stepCount >= Const::MIN_WIN_STEP && stepCount < Const::MAX_WIN_STEP) {
         std::array<int, Const::MAP_SIZE> temp{0};
         for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
-            if (is_win(implementationMap[row])) { isWin = true; return; }
+            if (is_win(implementationMap[row])) {
+                isWin = true;
+                return;
+            }
         }
         for (size_t colm{0}; colm != Const::MAP_SIZE; ++colm) {
             for (size_t row{0}; row != Const::MAP_SIZE; ++row) {
                 temp[row] = implementationMap[row][colm];
             }
-            if (is_win(temp)) { isWin = true; return; }
+            if (is_win(temp)) {
+                isWin = true;
+                return;
+            }
         }
         for (size_t row{0}, colm{0}; row != Const::MAP_SIZE; ++row, ++colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (is_win(temp)) { isWin = true; return; }
+        if (is_win(temp)) {
+            isWin = true;
+            return;
+        }
         for (size_t row{0}, colm{2}; row != Const::MAP_SIZE; ++row, --colm) {
             temp[row] = implementationMap[row][colm];
         }
-        if (is_win(temp)) { isWin = true; return; }
+        if (is_win(temp)) {
+            isWin = true;
+            return;
+        }
     }
     if (stepCount == Const::MAX_WIN_STEP) {
-        isWin= false;
+        isWin = false;
         return;
     }
     isWin = std::nullopt;
-
 }
 
 bool Game::is_win(std::span<int> temp) {
@@ -292,9 +295,10 @@ void Game::if_win() {
     if (isWin.has_value()) {
         if (isWin.value() == true) {
             render();
-            patternVariant == Const::CROSS_PATTERN ? std::cout << "The crosses won!\n" : std::cout << "The zeros won!\n";
-        }
-        else if (isWin.value() == false) {
+            patternVariant == Const::CROSS_PATTERN
+                ? std::cout << "The crosses won!\n"
+                : std::cout << "The zeros won!\n";
+        } else if (isWin.value() == false) {
             render();
             std::cout << "It was a draw...\n";
         }
@@ -318,9 +322,9 @@ bool Game::start_over() {
     std::cout << "\nWould you like to continue playing?\n";
     std::cout << "Press y - continue  n - quit\n\n: ";
     char presskey;
-    while(true) {
+    while (true) {
         std::cin >> presskey;
-        if (presskey != 'y' && presskey != 'Y' && presskey != 'n' && presskey != 'N' ) {
+        if (presskey != 'y' && presskey != 'Y' && presskey != 'n' && presskey != 'N') {
             std::cout << "Enter y or n: ";
             continue;
         }
