@@ -17,8 +17,6 @@ class Game {
 public:
     void welcome() const;
 
-    void game_mode();
-
     void choose();
 
     void render() const;
@@ -30,6 +28,10 @@ public:
     bool start_over();
 
 private:
+    void game_mode();
+
+    void pattern_choose();
+
     void enter();
 
     void computer_logic();

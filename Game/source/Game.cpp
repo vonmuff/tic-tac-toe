@@ -29,7 +29,7 @@ Play with a friend - 1   Play with the computer - 2
  /|\  vs  /|\            /|\  vs  |_____|
   |        |              |      ____|____
  / \      / \            / \    |_________|)";
-    std::cout << "\n\n:";
+    std::cout << "\n\n: ";
     while (true) {
         std::cin >> mode;
         if (std::cin.fail()) {
@@ -46,7 +46,7 @@ Play with a friend - 1   Play with the computer - 2
     system("cls");
 }
 
-void Game::choose() {
+void Game::pattern_choose() {
     std::cout << "Choose the pattern that will start first \n\n";
     std::cout << "1 - cross     2 - zero\n\n";
     for (size_t row{0}; row != Const::ROWS_PATTERN; ++row) {
