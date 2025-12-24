@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <ranges>
 #include <random>
+#include <bits/this_thread_sleep.h>
 
 void Game::welcome() const {
     std::cout << R"(
@@ -85,6 +86,11 @@ void Game::user_choise() {
 
 void Game::render() const {
     system("cls");
+    if (patternVariant == Const::CROSS_PATTERN)
+        std::cout << "Crosses - make your move!\n";
+    else if (patternVariant == Const::ZERO_PATTERN)
+        std::cout << "Zeros - make your move!\n";
+
     int iterRow{0}, iterColm{0};
     for (size_t row{0}; row <= Const::ROWS_MAP; ++row) {
         for (size_t colm{0}; colm != Const::COLMS_MAP; ++colm) {
@@ -149,6 +155,12 @@ void Game::enter() {
 }
 
 void Game::computer_logic() {
+    std::cout << "Computer is thinking";
+    for (int i{0}; i != 3; ++i) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        std::cout << ".";
+    }
+
     if (stepCount == 1) {
         if (implementationMap[1][1] == 0) {
             implementationMap[1][1] = Const::ZERO_PATTERN;
