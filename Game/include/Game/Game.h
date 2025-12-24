@@ -65,8 +65,8 @@ private:
     bool isRunning{true};
     std::optional<bool> isWin;
     int mode{1};
-    int patternVariant;
-    int firstPattern;
+    int patternVariant{1};
+    int firstPattern{1};
     int stepCount{0};
     std::pair<int, int> positionMap;
     std::array<std::array<int, 3>, 3> implementationMap{};
