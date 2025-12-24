@@ -1,15 +1,24 @@
 # Console Tic-Tac-Toe
 ### :video_game: Overview
 
-![game](https://github.com/user-attachments/assets/a92cff77-5c55-419c-ba6e-b544fbe7c517)
+![tictactoe](https://github.com/user-attachments/assets/b637cd26-0bc4-46d0-8f84-58aa4fccb0ca)
 
 ### :star: Features
 
+#### :game_die: Game modes
+* Local game for two players on one computer
+* Playing against AI
+#### :robot: Advanced AI
+* The computer can block the player's winning moves.
+* Seeking his own path to victory
+* Imitates the process of ‘thinking through’ a move
+#### :zap: Interface and UX
 * The game graphics are drawn using ASCII
-* Using modern C++20 standards
-* Use of STL algorithms
+* Intuitive position selection with Numpad (1-9)
 * Robust Input Validation
-* Functions include turn selection, win/draw detection, and replayability without restarting the application
+#### :hammer_and_wrench: Technical implementation
+* Using modern C++20 standards
+* Using of STL algorithms
 
 ### :computer: Technology stack 
 * C++20
