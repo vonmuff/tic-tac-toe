@@ -252,6 +252,7 @@ void Game::step() {
     if (is_running() == false) return;;
     if (mode == 2) {
         patternVariant = (patternVariant == Const::CROSS_PATTERN) ? Const::ZERO_PATTERN : Const::CROSS_PATTERN;
+        render();
         computer_logic();
         ++stepCount;
         win();
